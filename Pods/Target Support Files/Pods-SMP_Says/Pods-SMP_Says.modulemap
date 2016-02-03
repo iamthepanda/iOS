@@ -1,0 +1,6 @@
+framework module Pods_SMP_Says {
+  umbrella header "Pods-SMP_Says-umbrella.h"
+
+  export *
+  module * { export * }
+}
