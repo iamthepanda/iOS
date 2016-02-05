@@ -12,9 +12,12 @@ class QuoteCell: UITableViewCell {
     
     @IBOutlet weak var quotationLabel: UILabel!
     
+    @IBOutlet weak var schoolLabel: UILabel!
+    
     var quote : Quote! {
         didSet {
             quotationLabel.text = quote.quotation
+            schoolLabel.text = quote.school
         }
     }
 

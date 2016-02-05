@@ -14,12 +14,12 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var quotesTableView: UITableView!
     
-    var quotes : [Quote] = [Quote]()
+    var quotes : [NSDictionary]! = []
     
     //    var myArray : [CUSTOM_CLASS] = [CUSTOM_CLASS]()
     
     var searchBar : UISearchBar!
-    var searchResults : [Quote]!
+    var searchResults : [NSDictionary]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +42,22 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 Alamofire.request(.GET, url, parameters: nil)
                     .responseJSON { response in
         
-                        print(response.result.value)
-                        let JSON =  response.result.value as! [Quote]!
-                        let quotes = JSON
-                        print(quotes)
+                       // print(response.result.value)
+                        let JSON =  response.result.value as! [NSDictionary]
+                        
+                        for quote in JSON {
+                          //  print(quote)
+                            self.quotes.append(quote)
+                        }
+                       
+                      //  let quote = quotes(JSON)
+                        
+                        print(self.quotes[4])
+                        
+                        self.searchResults = self.quotes
+                        self.quotesTableView.reloadData()
+                        
+                      //  print(self.quotes)
                         
         
 //                        if let quotes: [Quote]? = response.result.value as! [Quote]!{
@@ -99,7 +111,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("QuoteCell", forIndexPath: indexPath) as! QuoteCell
         
-        cell.quote = searchResults[indexPath.row]
+        cell.quote = Quote(dictionary: self.quotes[indexPath.row])
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
     }
