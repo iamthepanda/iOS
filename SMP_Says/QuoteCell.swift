@@ -14,10 +14,17 @@ class QuoteCell: UITableViewCell {
     
     @IBOutlet weak var schoolLabel: UILabel!
     
+    @IBOutlet weak var upVoteImageView: UIImageView!
+    @IBOutlet weak var downVoteImageView: UIImageView!
+    @IBOutlet weak var professorLabel: UILabel!
+    @IBOutlet weak var subjectLabel: UILabel!
+    
     var quote : Quote! {
         didSet {
             quotationLabel.text = quote.quotation
             schoolLabel.text = quote.school
+            professorLabel.text = quote.professor
+            subjectLabel.text = quote.subject
         }
     }
 

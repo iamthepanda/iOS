@@ -14,6 +14,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var quotesTableView: UITableView!
     
+    
+    
     var quotes : [NSDictionary]! = []
     
     //    var myArray : [CUSTOM_CLASS] = [CUSTOM_CLASS]()
@@ -34,9 +36,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         self.searchBar.sizeToFit()
         searchBar.placeholder = "Enter search term"
         
+        navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
+        
         //add the search bar to the navigation bar and customize the nav bar
         navigationItem.titleView = searchBar
-        navigationController?.navigationBar.barTintColor = UIColor(red: 218/255, green: 56/255, blue: 40/255, alpha: 1)
+       // navigationController?.navigationBar.barTintColor = UIColor(red: 218/255, green: 56/255, blue: 40/255, alpha: 1)
         
         var url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
                 Alamofire.request(.GET, url, parameters: nil)
