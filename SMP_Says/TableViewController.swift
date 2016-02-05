@@ -8,14 +8,15 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-
+    
     @IBOutlet weak var quotesTableView: UITableView!
     
     var quotes : [Quote] = [Quote]()
     
-//    var myArray : [CUSTOM_CLASS] = [CUSTOM_CLASS]()
+    //    var myArray : [CUSTOM_CLASS] = [CUSTOM_CLASS]()
     
     var searchBar : UISearchBar!
     var searchResults : [Quote]!
@@ -37,35 +38,56 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         navigationItem.titleView = searchBar
         navigationController?.navigationBar.barTintColor = UIColor(red: 218/255, green: 56/255, blue: 40/255, alpha: 1)
         
-        Alamofire.request(.GET, "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes", parameters: nil)
-            .responseJSON { response in
-                
-                print(response.result.value![0] )
-                
-                if let quotes: [Quote]? = response.result.value as! [Quote]!{
-                    self.quotes = quotes!
-                    print(quotes)
-                    self.searchResults = self.quotes
-                    self.quotesTableView.reloadData()
+        var url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
+                Alamofire.request(.GET, url, parameters: nil)
+                    .responseJSON { response in
+        
+                        print(response.result.value)
+                        let JSON =  response.result.value as! [Quote]!
+                        let quotes = JSON
+                        print(quotes)
+                        
+        
+//                        if let quotes: [Quote]? = response.result.value as! [Quote]!{
+//                            self.quotes = quotes!
+//                            print(quotes)
+//                            self.searchResults = self.quotes
+//                            self.quotesTableView.reloadData()
+//                        }
                 }
-        }
         
-        
-        
-        
-        
-       
-//            self.businesses = businesses
-//            
-//            self.searchResults = self.businesses
-//            self.businessTableView.reloadData()
-//            
-//            for business in businesses {
-//                print(business.id!)
-//                print(business.name!)
-//                print(business.address!)
+//        Alamofire.request(.GET, url).validate().responseJSON { response in
+//            switch response.result {
+//            case .Success:
+//                if let value = response.result.value {
+//                    let json = JSON(value)
+//                    print("JSON: \(json)")
+//                    if let quote = json[0] as? Quote! {
+//                      //  self.quotes = quotes!
+//                        print(quote)
+//                    //    self.searchResults = self.quotes
+//                        self.quotesTableView.reloadData()
+//                    }
+//                }
+//            case .Failure(let error):
+//                print(error)
 //            }
-//        
+//        }
+        
+        
+        
+        
+        //            self.businesses = businesses
+        //
+        //            self.searchResults = self.businesses
+        //            self.businessTableView.reloadData()
+        //
+        //            for business in businesses {
+        //                print(business.id!)
+        //                print(business.name!)
+        //                print(business.address!)
+        //            }
+        //
         
         
     }
@@ -94,17 +116,17 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
-//        self.searchResults = self.businesses
-//        self.businessTableView.reloadData()
+        //        self.searchResults = self.businesses
+        //        self.businessTableView.reloadData()
     }
-
-
-
+    
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
