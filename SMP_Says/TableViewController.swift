@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var quotesTableView: UITableView!
     
@@ -20,27 +20,31 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     //    var myArray : [CUSTOM_CLASS] = [CUSTOM_CLASS]()
     
-    var searchBar : UISearchBar!
+//    var searchBar : UISearchBar!
     var searchResults : [NSDictionary]!
-    
+//    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         quotesTableView.delegate = self
         quotesTableView.dataSource = self
         
+        navigationItem.title = "Stuff My Professor Says"
+        
+        
         // create the search bar programatically since you won't be
         // able to drag one onto the navigation bar
-        self.searchBar = UISearchBar()
-        searchBar.delegate = self
-        self.searchBar.sizeToFit()
-        searchBar.placeholder = "Enter search term"
+//        self.searchBar = UISearchBar()
+//        searchBar.delegate = self
+//        self.searchBar.sizeToFit()
+//        searchBar.placeholder = "Enter search term"
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
         //add the search bar to the navigation bar and customize the nav bar
-        navigationItem.titleView = searchBar
+    //    navigationItem.titleView = searchBar
        // navigationController?.navigationBar.barTintColor = UIColor(red: 218/255, green: 56/255, blue: 40/255, alpha: 1)
+        
         
         var url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
                 Alamofire.request(.GET, url, parameters: nil)

@@ -14,8 +14,7 @@ class QuoteCell: UITableViewCell {
     
     @IBOutlet weak var schoolLabel: UILabel!
     
-    @IBOutlet weak var upVoteImageView: UIImageView!
-    @IBOutlet weak var downVoteImageView: UIImageView!
+    
     @IBOutlet weak var professorLabel: UILabel!
     @IBOutlet weak var subjectLabel: UILabel!
     
@@ -38,5 +37,7 @@ class QuoteCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }
