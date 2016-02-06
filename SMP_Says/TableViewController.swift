@@ -31,6 +31,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         navigationItem.title = "Stuff My Professor Says"
         
+        //set tableviewcell row height
+        quotesTableView.rowHeight = UITableViewAutomaticDimension
+        quotesTableView.estimatedRowHeight = 120
         
         // create the search bar programatically since you won't be
         // able to drag one onto the navigation bar
@@ -60,7 +63,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                        
                       //  let quote = quotes(JSON)
                         
-                        print(self.quotes[4])
+                      //  print(self.quotes[4])
                         
                         self.searchResults = self.quotes
                         self.quotesTableView.reloadData()
@@ -120,6 +123,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("QuoteCell", forIndexPath: indexPath) as! QuoteCell
         
         cell.quote = Quote(dictionary: self.quotes[indexPath.row])
+      //  print(cell.quote)
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
