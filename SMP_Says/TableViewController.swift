@@ -10,19 +10,21 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var quotesTableView: UITableView!
     
+    @IBOutlet weak var searchBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
+    
+    var searchBarDisplay : Bool! = false
     
     var quotes : [NSDictionary]! = []
     
-    //    var myArray : [CUSTOM_CLASS] = [CUSTOM_CLASS]()
-    
-//    var searchBar : UISearchBar!
+    var searchBar : UISearchBar!
     var searchResults : [NSDictionary]!
-//    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,84 +37,33 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         quotesTableView.rowHeight = UITableViewAutomaticDimension
         quotesTableView.estimatedRowHeight = 120
         
-        // create the search bar programatically since you won't be
-        // able to drag one onto the navigation bar
-//        self.searchBar = UISearchBar()
-//        searchBar.delegate = self
-//        self.searchBar.sizeToFit()
-//        searchBar.placeholder = "Enter search term"
+        // create the search bar programatically
+        self.searchBar = UISearchBar()
+        searchBar.delegate = self
+        self.searchBar.sizeToFit()
+        searchBar.placeholder = "Enter search term"
+        
+        if (searchBarDisplay == false) {
+            navigationItem.title = "Stuff My Professor Says"
+        }
+        
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
-        //add the search bar to the navigation bar and customize the nav bar
-    //    navigationItem.titleView = searchBar
-       // navigationController?.navigationBar.barTintColor = UIColor(red: 218/255, green: 56/255, blue: 40/255, alpha: 1)
-        
-        
         var url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
-                Alamofire.request(.GET, url, parameters: nil)
-                    .responseJSON { response in
-        
-                       // print(response.result.value)
-                        let JSON =  response.result.value as! [NSDictionary]
-                        
-                        for quote in JSON {
-                          //  print(quote)
-                            self.quotes.append(quote)
-                        }
-                       
-                      //  let quote = quotes(JSON)
-                        
-                      //  print(self.quotes[4])
-                        
-                        self.searchResults = self.quotes
-                        self.quotesTableView.reloadData()
-                        
-                      //  print(self.quotes)
-                        
-        
-//                        if let quotes: [Quote]? = response.result.value as! [Quote]!{
-//                            self.quotes = quotes!
-//                            print(quotes)
-//                            self.searchResults = self.quotes
-//                            self.quotesTableView.reloadData()
-//                        }
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { response in
+                
+                let JSON =  response.result.value as! [NSDictionary]
+                
+                for quote in JSON {
+                    
+                    self.quotes.append(quote)
                 }
-        
-//        Alamofire.request(.GET, url).validate().responseJSON { response in
-//            switch response.result {
-//            case .Success:
-//                if let value = response.result.value {
-//                    let json = JSON(value)
-//                    print("JSON: \(json)")
-//                    if let quote = json[0] as? Quote! {
-//                      //  self.quotes = quotes!
-//                        print(quote)
-//                    //    self.searchResults = self.quotes
-//                        self.quotesTableView.reloadData()
-//                    }
-//                }
-//            case .Failure(let error):
-//                print(error)
-//            }
-//        }
-        
-        
-        
-        
-        //            self.businesses = businesses
-        //
-        //            self.searchResults = self.businesses
-        //            self.businessTableView.reloadData()
-        //
-        //            for business in businesses {
-        //                print(business.id!)
-        //                print(business.name!)
-        //                print(business.address!)
-        //            }
-        //
-        
-        
+                
+                self.searchResults = self.quotes
+                self.quotesTableView.reloadData()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,7 +74,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCellWithIdentifier("QuoteCell", forIndexPath: indexPath) as! QuoteCell
         
         cell.quote = Quote(dictionary: self.quotes[indexPath.row])
-      //  print(cell.quote)
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         return cell
@@ -141,11 +91,15 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchBar.showsCancelButton = false
         searchBar.text = ""
         searchBar.resignFirstResponder()
-        //        self.searchResults = self.businesses
-        //        self.businessTableView.reloadData()
+        navigationItem.titleView = nil
+        
+        navigationItem.title = "Stuff My Professor Says"
     }
     
-    
+    @IBAction func searchBarButtonClicked(sender: AnyObject) {
+        //add the search bar to the navigation bar and customize the nav bar
+        navigationItem.titleView = searchBar
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
