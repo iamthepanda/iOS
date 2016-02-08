@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		608E886ECE01DD2A432CE4A4 /* Pods_SMP_Says.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */; };
+		FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386B1C64CC77009D314A /* QuoteCell.swift */; };
+		FA54386E1C64CEDD009D314A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386D1C64CEDD009D314A /* Quote.swift */; };
 		FAFECD8C1C62B78A000D22E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFECD8B1C62B78A000D22E9 /* AppDelegate.swift */; };
-		FAFECD8E1C62B78A000D22E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFECD8D1C62B78A000D22E9 /* ViewController.swift */; };
+		FAFECD8E1C62B78A000D22E9 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFECD8D1C62B78A000D22E9 /* TableViewController.swift */; };
 		FAFECD911C62B78A000D22E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFECD8F1C62B78A000D22E9 /* Main.storyboard */; };
 		FAFECD931C62B78A000D22E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAFECD921C62B78A000D22E9 /* Assets.xcassets */; };
 		FAFECD961C62B78A000D22E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAFECD941C62B78A000D22E9 /* LaunchScreen.storyboard */; };
@@ -19,9 +21,11 @@
 		8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMP_Says.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB9F96377E367F3251F59C1 /* Pods-SMP_Says.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.release.xcconfig"; sourceTree = "<group>"; };
 		EF739C0A860BA8179086D4C6 /* Pods-SMP_Says.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.debug.xcconfig"; sourceTree = "<group>"; };
+		FA54386B1C64CC77009D314A /* QuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
+		FA54386D1C64CEDD009D314A /* Quote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		FAFECD881C62B78A000D22E9 /* SMP_Says.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMP_Says.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFECD8B1C62B78A000D22E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAFECD8D1C62B78A000D22E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAFECD8D1C62B78A000D22E9 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		FAFECD901C62B78A000D22E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAFECD921C62B78A000D22E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAFECD951C62B78A000D22E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +61,30 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FA5438681C64CBFD009D314A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA54386D1C64CEDD009D314A /* Quote.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FA5438691C64CC04009D314A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA54386B1C64CC77009D314A /* QuoteCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FA54386A1C64CC11009D314A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAFECD8D1C62B78A000D22E9 /* TableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		FAFECD7F1C62B78A000D22E9 = {
 			isa = PBXGroup;
 			children = (
@@ -79,7 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				FAFECD8B1C62B78A000D22E9 /* AppDelegate.swift */,
-				FAFECD8D1C62B78A000D22E9 /* ViewController.swift */,
+				FA5438691C64CC04009D314A /* Views */,
+				FA5438681C64CBFD009D314A /* Models */,
+				FA54386A1C64CC11009D314A /* Controllers */,
 				FAFECD8F1C62B78A000D22E9 /* Main.storyboard */,
 				FAFECD921C62B78A000D22E9 /* Assets.xcassets */,
 				FAFECD941C62B78A000D22E9 /* LaunchScreen.storyboard */,
@@ -210,7 +240,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAFECD8E1C62B78A000D22E9 /* ViewController.swift in Sources */,
+				FA54386E1C64CEDD009D314A /* Quote.swift in Sources */,
+				FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */,
+				FAFECD8E1C62B78A000D22E9 /* TableViewController.swift in Sources */,
 				FAFECD8C1C62B78A000D22E9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
