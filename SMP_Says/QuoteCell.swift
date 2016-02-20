@@ -30,6 +30,8 @@ class QuoteCell: UITableViewCell {
             schoolLabel.text = quote.school
            // professorLabel.text = quote.professor
             subjectLabel.text = quote.subject
+            voteCountLabel.text = quote.rightvotes?.stringValue
+            
             
             print("\(quote.quotation)")
             print("\(quote.school)")
@@ -58,25 +60,39 @@ class QuoteCell: UITableViewCell {
     }
     
     @IBAction func upVoteButtonClicked(sender: AnyObject) {
-        upvoted = true
-        if (downvoted == true) {
+        if (upvoted == true) {
+            upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
+            upvoted = false
+            //TODO: api call for downvote
+        } else if (downvoted == true) {
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
+            upvoted = true
             downvoted = false
-        } else {
+            //TODO: api call for upvote 2 points (to be implemented on API end ASAP)
+        } else if (upvoted != true) {
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
+            upvoted = true
+            //TODO: api call for upvote
         }
         
     }
     
     @IBAction func downVoteButtonClicked(sender: AnyObject) {
-        downvoted = true
-        if (upvoted == true) {
+        if (downvoted == true) {
+            downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
+            downvoted = false
+            //TODO: api call for downvote
+        } else if (upvoted == true) {
             upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
             upvoted = false
-        } else {
+            downvoted = true
+            //TODO: api call for downvote 2 points (to be implemented on API end ASAP)
+        } else if (downvoted != true){
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
+            downvoted = true
+            //TODO: api call for downvote
         }
         
     }

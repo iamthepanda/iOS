@@ -31,7 +31,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         quotesTableView.delegate = self
         quotesTableView.dataSource = self
         
-        navigationItem.title = "Stuff My Professor Says"
         
         //set tableviewcell row height
         quotesTableView.rowHeight = UITableViewAutomaticDimension
@@ -80,7 +79,13 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        if (searchBarDisplay == false) {
+         searchBar.resignFirstResponder()
+        }
+//        else {
+//            searchBarDisplay = false
+//            navigationItem.title = "Stuff My Professor Says"
+//        }
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {

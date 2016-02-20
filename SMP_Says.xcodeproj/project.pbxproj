@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		608E886ECE01DD2A432CE4A4 /* Pods_SMP_Says.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */; };
+		C7F26DD61C77E31900523F95 /* SMPSLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F26DD51C77E31900523F95 /* SMPSLogo.png */; };
 		FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386B1C64CC77009D314A /* QuoteCell.swift */; };
 		FA54386E1C64CEDD009D314A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386D1C64CEDD009D314A /* Quote.swift */; };
 		FAFECD8C1C62B78A000D22E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFECD8B1C62B78A000D22E9 /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMP_Says.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7F26DD51C77E31900523F95 /* SMPSLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SMPSLogo.png; path = ../../../../Downloads/SMPSLogo.png; sourceTree = "<group>"; };
 		EBB9F96377E367F3251F59C1 /* Pods-SMP_Says.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.release.xcconfig"; sourceTree = "<group>"; };
 		EF739C0A860BA8179086D4C6 /* Pods-SMP_Says.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.debug.xcconfig"; sourceTree = "<group>"; };
 		FA54386B1C64CC77009D314A /* QuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		FAFECD8A1C62B78A000D22E9 /* SMP_Says */ = {
 			isa = PBXGroup;
 			children = (
+				C7F26DD51C77E31900523F95 /* SMPSLogo.png */,
 				FAFECD8B1C62B78A000D22E9 /* AppDelegate.swift */,
 				FA5438691C64CC04009D314A /* Views */,
 				FA5438681C64CBFD009D314A /* Models */,
@@ -153,6 +156,7 @@
 				TargetAttributes = {
 					FAFECD871C62B78A000D22E9 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 6M665SHXJ7;
 					};
 				};
 			};
@@ -182,6 +186,7 @@
 				FAFECD961C62B78A000D22E9 /* LaunchScreen.storyboard in Resources */,
 				FAFECD931C62B78A000D22E9 /* Assets.xcassets in Resources */,
 				FAFECD911C62B78A000D22E9 /* Main.storyboard in Resources */,
+				C7F26DD61C77E31900523F95 /* SMPSLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,10 +360,13 @@
 			baseConfigurationReference = EF739C0A860BA8179086D4C6 /* Pods-SMP_Says.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SMP_Says/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monteThakkar.SMP-Says";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -367,10 +375,13 @@
 			baseConfigurationReference = EBB9F96377E367F3251F59C1 /* Pods-SMP_Says.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SMP_Says/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.monteThakkar.SMP-Says";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
