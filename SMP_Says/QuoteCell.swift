@@ -3,7 +3,7 @@
 //  SMP_Says
 //
 //  Created by Monte's Pro 13" on 2/5/16.
-//  Copyright © 2016 MonteThakkar. All rights reserved.
+//  Copyright © 2016 Stuff My Professor Says. All rights reserved.
 //
 
 import UIKit
