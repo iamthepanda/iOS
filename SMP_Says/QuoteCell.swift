@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class QuoteCell: UITableViewCell {
     
@@ -24,14 +25,22 @@ class QuoteCell: UITableViewCell {
     
     var upvoted = false
     var downvoted = false
+    var rightVotes : NSNumber = 0.0
+    var leftVotes : NSNumber = 0.0
+    var voteCount : Int = 0
+    var id : Int = 0
+    
     var quote : Quote! {
         didSet {
             quotationLabel.text = quote.quotation
             schoolLabel.text = quote.school
            // professorLabel.text = quote.professor
             subjectLabel.text = quote.subject
-            voteCountLabel.text = quote.rightvotes?.stringValue
-            
+            rightVotes = quote.rightvotes!
+            leftVotes = quote.leftvotes!
+            voteCount = rightVotes.integerValue - leftVotes.integerValue
+            voteCountLabel.text = "\(voteCount)"
+            id = (quote.id?.integerValue)!
             
             print("\(quote.quotation)")
             print("\(quote.school)")
@@ -63,17 +72,27 @@ class QuoteCell: UITableViewCell {
         if (upvoted == true) {
             upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
             upvoted = false
+            voteCount = voteCount - 1
+            voteCountLabel.text = "\(voteCount)"
             //TODO: api call for downvote
+            vote("down", idNumber: id)
         } else if (downvoted == true) {
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
             upvoted = true
             downvoted = false
+            voteCount = voteCount + 2
+            voteCountLabel.text = "\(voteCount)"
             //TODO: api call for upvote 2 points (to be implemented on API end ASAP)
+            vote("up", idNumber: id)
+            vote("up", idNumber: id)
         } else if (upvoted != true) {
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
             upvoted = true
+            voteCount = voteCount + 1
+            voteCountLabel.text = "\(voteCount)"
             //TODO: api call for upvote
+            vote("up", idNumber: id)
         }
         
     }
@@ -82,19 +101,41 @@ class QuoteCell: UITableViewCell {
         if (downvoted == true) {
             downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
             downvoted = false
-            //TODO: api call for downvote
+            voteCount = voteCount + 1
+            voteCountLabel.text = "\(voteCount)"
+            //TODO: api call for upvote
+            vote("up", idNumber: id)
         } else if (upvoted == true) {
             upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
             upvoted = false
             downvoted = true
+            voteCount = voteCount - 2
+            voteCountLabel.text = "\(voteCount)"
             //TODO: api call for downvote 2 points (to be implemented on API end ASAP)
+            vote("down", idNumber: id)
+            vote("down", idNumber: id)
         } else if (downvoted != true){
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
             downvoted = true
+            voteCount = voteCount - 1
+            voteCountLabel.text = "\(voteCount)"
             //TODO: api call for downvote
+            vote("down", idNumber: id)
         }
         
+    }
+    
+    func vote (direction : String, idNumber : Int) {
+        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/save/vote?id=\(idNumber)&direction=\(direction)"
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { response in
+                print(response.response)
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+        }
     }
 
 }

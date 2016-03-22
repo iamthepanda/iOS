@@ -49,7 +49,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
-        var url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
+        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
                 

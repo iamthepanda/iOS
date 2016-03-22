@@ -149,9 +149,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7yx-KZ-Txm">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="bEL-ul-iYD" kind="popover" popoverAnchorBarButtonItem="7yx-KZ-Txm" id="bkN-cv-E9b">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="bEL-ul-iYD" kind="push" id="bkN-cv-E9b"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
