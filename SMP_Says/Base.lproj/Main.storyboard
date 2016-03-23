@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VzU-bI-65T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VzU-bI-65T">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuoteCell" rowHeight="96" id="fe9-ug-xki" customClass="QuoteCell" customModule="SMP_Says" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="96"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fe9-ug-xki" id="CO0-yS-iT1">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="95.5"/>
@@ -110,7 +110,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gna-1b-Bkj">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gna-1b-Bkj">
                                 <rect key="frame" x="0.0" y="64" width="320" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trending Now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgY-rg-Tyz">
@@ -163,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="647" y="321"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Quote View Controller-->
         <scene sceneID="xMr-JG-yeL">
             <objects>
-                <viewController id="bEL-ul-iYD" sceneMemberID="viewController">
+                <viewController id="bEL-ul-iYD" customClass="AddQuoteViewController" customModule="SMP_Says" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r8s-nY-1sj"/>
                         <viewControllerLayoutGuide type="bottom" id="WLS-Be-SZv"/>
@@ -177,21 +177,33 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pv-36-4pw">
                                 <rect key="frame" x="20" y="131" width="280" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DZ-gS-w6c">
                                 <rect key="frame" x="20" y="228" width="280" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sad-Sa-CVI">
                                 <rect key="frame" x="20" y="326" width="280" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-Cj-1ft">
                                 <rect key="frame" x="20" y="425" width="280" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -228,6 +240,10 @@
                                 <state key="normal" title="Submit Quote">
                                     <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onSubmitButtonClick:" destination="bEL-ul-iYD" eventType="touchUpInside" id="UtW-3b-JFb"/>
+                                    <segue destination="BYZ-38-t0r" kind="push" id="sv0-yP-j6e"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quote" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rV-Lg-v8p">
                                 <rect key="frame" x="20" y="102" width="47" height="21"/>
@@ -239,6 +255,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="S2J-kw-5td"/>
+                    <connections>
+                        <outlet property="professorField" destination="Sad-Sa-CVI" id="DyW-6M-H2W"/>
+                        <outlet property="quoteField" destination="5pv-36-4pw" id="8eM-s4-aJc"/>
+                        <outlet property="schoolField" destination="8DZ-gS-w6c" id="9N4-Zk-bhf"/>
+                        <outlet property="subjectField" destination="rP6-Cj-1ft" id="C40-SJ-RK7"/>
+                        <outlet property="submitButton" destination="iby-q3-7Xb" id="gjh-Il-4hv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TFs-DS-E7r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -267,5 +291,8 @@
         <image name="down" width="25" height="25"/>
         <image name="up" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sv0-yP-j6e"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.98424501320000002" green="0.98710729689999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
