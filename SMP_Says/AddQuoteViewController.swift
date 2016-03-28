@@ -18,12 +18,20 @@ class AddQuoteViewController: UIViewController {
     @IBOutlet weak var subjectField: UITextField!
     @IBOutlet weak var professorField: UITextField!
     
+    var pickerDataSource: NSArray = []
+    
+    let bundle = NSBundle.mainBundle()
+    if let path = bundle.pathForResource("Subjects", ofType: "txt") {
+        text = NSString(contentsOfFile: path, encoding: NSUTF8StringEncoding)
+        let pickerDataSource : [String] = text.componentsSeparatedByString("\n")
+    }
+    
     
     @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.schoolField.becomeFirstResponder()
+        self.quoteField.becomeFirstResponder()
     }
     
     

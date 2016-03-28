@@ -11,6 +11,8 @@
 		C74A85CA1C7FEDCB00B391A9 /* AddQuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */; };
 		C76EE1141CA8758900CAEB08 /* PostVoteData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C76EE1121CA8758900CAEB08 /* PostVoteData.xcdatamodeld */; };
 		C76EE1161CA8802700CAEB08 /* UserVotedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */; };
+		C7AB3B9B1CA8FB6E007CF2B4 /* Subjects.txt in Resources */ = {isa = PBXBuildFile; fileRef = C7AB3B9A1CA8FB6E007CF2B4 /* Subjects.txt */; };
+		C7AB3B9D1CA8FC08007CF2B4 /* UIPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AB3B9C1CA8FC08007CF2B4 /* UIPickerViewController.swift */; };
 		C7F26DD61C77E31900523F95 /* SMPSLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F26DD51C77E31900523F95 /* SMPSLogo.png */; };
 		FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386B1C64CC77009D314A /* QuoteCell.swift */; };
 		FA54386E1C64CEDD009D314A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386D1C64CEDD009D314A /* Quote.swift */; };
@@ -26,6 +28,8 @@
 		C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddQuoteViewController.swift; sourceTree = "<group>"; };
 		C76EE1131CA8758900CAEB08 /* postVoteData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = postVoteData.xcdatamodel; sourceTree = "<group>"; };
 		C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVotedPost.swift; sourceTree = "<group>"; };
+		C7AB3B9A1CA8FB6E007CF2B4 /* Subjects.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Subjects.txt; path = ../../../../Desktop/Subjects.txt; sourceTree = "<group>"; };
+		C7AB3B9C1CA8FC08007CF2B4 /* UIPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPickerViewController.swift; sourceTree = "<group>"; };
 		C7F26DD51C77E31900523F95 /* SMPSLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SMPSLogo.png; path = ../../../../Downloads/SMPSLogo.png; sourceTree = "<group>"; };
 		EBB9F96377E367F3251F59C1 /* Pods-SMP_Says.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.release.xcconfig"; sourceTree = "<group>"; };
 		EF739C0A860BA8179086D4C6 /* Pods-SMP_Says.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			children = (
 				FAFECD8D1C62B78A000D22E9 /* TableViewController.swift */,
 				C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */,
+				C7AB3B9C1CA8FC08007CF2B4 /* UIPickerViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 				FAFECD941C62B78A000D22E9 /* LaunchScreen.storyboard */,
 				FAFECD971C62B78A000D22E9 /* Info.plist */,
 				C76EE1121CA8758900CAEB08 /* PostVoteData.xcdatamodeld */,
+				C7AB3B9A1CA8FB6E007CF2B4 /* Subjects.txt */,
 			);
 			path = SMP_Says;
 			sourceTree = "<group>";
@@ -195,6 +201,7 @@
 				FAFECD961C62B78A000D22E9 /* LaunchScreen.storyboard in Resources */,
 				FAFECD931C62B78A000D22E9 /* Assets.xcassets in Resources */,
 				FAFECD911C62B78A000D22E9 /* Main.storyboard in Resources */,
+				C7AB3B9B1CA8FB6E007CF2B4 /* Subjects.txt in Resources */,
 				C7F26DD61C77E31900523F95 /* SMPSLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +263,7 @@
 			files = (
 				FA54386E1C64CEDD009D314A /* Quote.swift in Sources */,
 				FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */,
+				C7AB3B9D1CA8FC08007CF2B4 /* UIPickerViewController.swift in Sources */,
 				FAFECD8E1C62B78A000D22E9 /* TableViewController.swift in Sources */,
 				FAFECD8C1C62B78A000D22E9 /* AppDelegate.swift in Sources */,
 				C76EE1161CA8802700CAEB08 /* UserVotedPost.swift in Sources */,
