@@ -12,6 +12,8 @@ import SwiftyJSON
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+    @IBOutlet weak var quoteOrganizationSwitch: UISegmentedControl!
+    
     @IBOutlet weak var quotesTableView: UITableView!
     
     @IBOutlet weak var searchBarButton: UIBarButtonItem!
@@ -31,6 +33,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         quotesTableView.delegate = self
         quotesTableView.dataSource = self
         
+        quoteOrganizationSwitch.addTarget(self, action: #selector(TableViewController.quoteOrganizationChanged(_:)), forControlEvents: .ValueChanged);
+        
         
         //set tableviewcell row height
         quotesTableView.rowHeight = UITableViewAutomaticDimension
@@ -44,16 +48,51 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         if (searchBarDisplay == false) {
             navigationItem.title = "Stuff My Professor Says"
+            
         }
         
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
         let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
+
+        fillTableView(url)
+        
+    }
+    
+    
+    func quoteOrganizationChanged(sender: UISegmentedControl) {
+        
+        var url :String = ""
+        
+        if quoteOrganizationSwitch.selectedSegmentIndex == 0 {
+            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
+        }
+        else {
+            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc"
+        }
+        
+        fillTableView(url)
+        quotesTableView.selectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0),
+                                             animated: false,
+                                             scrollPosition: UITableViewScrollPosition.Bottom)
+        
+    }
+    
+    func fillTableView (url : String) {
+        
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
                 
-                let JSON =  response.result.value as! [NSDictionary]
+                self.quotes = []
+                
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                let JSON =  response.result.value as! [NSDictionary] //TODO: protect against unexpected nil- 'if let, else {protection statement}
+                
                 
                 for quote in JSON {
                     
@@ -63,6 +102,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.searchResults = self.quotes
                 self.quotesTableView.reloadData()
         }
+
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,6 +116,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.quote = Quote(dictionary: self.quotes[indexPath.row])
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
     

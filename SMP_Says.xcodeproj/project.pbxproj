@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		608E886ECE01DD2A432CE4A4 /* Pods_SMP_Says.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */; };
 		C74A85CA1C7FEDCB00B391A9 /* AddQuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */; };
+		C76EE1141CA8758900CAEB08 /* PostVoteData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C76EE1121CA8758900CAEB08 /* PostVoteData.xcdatamodeld */; };
+		C76EE1161CA8802700CAEB08 /* UserVotedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */; };
 		C7F26DD61C77E31900523F95 /* SMPSLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C7F26DD51C77E31900523F95 /* SMPSLogo.png */; };
 		FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386B1C64CC77009D314A /* QuoteCell.swift */; };
 		FA54386E1C64CEDD009D314A /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA54386D1C64CEDD009D314A /* Quote.swift */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMP_Says.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddQuoteViewController.swift; sourceTree = "<group>"; };
+		C76EE1131CA8758900CAEB08 /* postVoteData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = postVoteData.xcdatamodel; sourceTree = "<group>"; };
+		C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVotedPost.swift; sourceTree = "<group>"; };
 		C7F26DD51C77E31900523F95 /* SMPSLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SMPSLogo.png; path = ../../../../Downloads/SMPSLogo.png; sourceTree = "<group>"; };
 		EBB9F96377E367F3251F59C1 /* Pods-SMP_Says.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.release.xcconfig"; sourceTree = "<group>"; };
 		EF739C0A860BA8179086D4C6 /* Pods-SMP_Says.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMP_Says.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMP_Says/Pods-SMP_Says.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				FA54386D1C64CEDD009D314A /* Quote.swift */,
+				C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 				FAFECD921C62B78A000D22E9 /* Assets.xcassets */,
 				FAFECD941C62B78A000D22E9 /* LaunchScreen.storyboard */,
 				FAFECD971C62B78A000D22E9 /* Info.plist */,
+				C76EE1121CA8758900CAEB08 /* PostVoteData.xcdatamodeld */,
 			);
 			path = SMP_Says;
 			sourceTree = "<group>";
@@ -252,7 +258,9 @@
 				FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */,
 				FAFECD8E1C62B78A000D22E9 /* TableViewController.swift in Sources */,
 				FAFECD8C1C62B78A000D22E9 /* AppDelegate.swift in Sources */,
+				C76EE1161CA8802700CAEB08 /* UserVotedPost.swift in Sources */,
 				C74A85CA1C7FEDCB00B391A9 /* AddQuoteViewController.swift in Sources */,
+				C76EE1141CA8758900CAEB08 /* PostVoteData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +419,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C76EE1121CA8758900CAEB08 /* PostVoteData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C76EE1131CA8758900CAEB08 /* postVoteData.xcdatamodel */,
+			);
+			currentVersion = C76EE1131CA8758900CAEB08 /* postVoteData.xcdatamodel */;
+			path = PostVoteData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FAFECD801C62B78A000D22E9 /* Project object */;
 }

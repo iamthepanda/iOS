@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 
 class QuoteCell: UITableViewCell {
     
@@ -29,6 +30,8 @@ class QuoteCell: UITableViewCell {
     var leftVotes : NSNumber = 0.0
     var voteCount : Int = 0
     var id : Int = 0
+    var postExistsInCoreData: Bool = false
+    var fetchedPosts: NSArray = []
     
     var quote : Quote! {
         didSet {
@@ -42,6 +45,8 @@ class QuoteCell: UITableViewCell {
             voteCountLabel.text = "\(voteCount)"
             id = (quote.id?.integerValue)!
             
+            getCoreDataForQuote(id)
+
             print("\(quote.quotation)")
             print("\(quote.school)")
             print("\(quote.subject)")
@@ -69,13 +74,17 @@ class QuoteCell: UITableViewCell {
     }
     
     @IBAction func upVoteButtonClicked(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let moc = appDelegate.managedObjectContext
+        
         if (upvoted == true) {
             upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
             upvoted = false
             voteCount = voteCount - 1
             voteCountLabel.text = "\(voteCount)"
-            //TODO: api call for downvote
             vote("down", idNumber: id)
+            moc.deleteObject(fetchedPosts[0] as! UserVotedPost)
         } else if (downvoted == true) {
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
@@ -86,25 +95,37 @@ class QuoteCell: UITableViewCell {
             //TODO: api call for upvote 2 points (to be implemented on API end ASAP)
             vote("up", idNumber: id)
             vote("up", idNumber: id)
+            (fetchedPosts[0] as! UserVotedPost).upvote()
         } else if (upvoted != true) {
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
             upvoted = true
             voteCount = voteCount + 1
             voteCountLabel.text = "\(voteCount)"
-            //TODO: api call for upvote
             vote("up", idNumber: id)
+            let newPostData = UserVotedPost(id: id, vote: true, insertIntoManagedObjectContext: moc)
+            fetchedPosts = [newPostData]
+        }
+        
+        do {
+            try moc.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
         }
         
     }
     
     @IBAction func downVoteButtonClicked(sender: AnyObject) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let moc = appDelegate.managedObjectContext
+        
         if (downvoted == true) {
             downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
             downvoted = false
             voteCount = voteCount + 1
             voteCountLabel.text = "\(voteCount)"
-            //TODO: api call for upvote
             vote("up", idNumber: id)
+            moc.deleteObject(fetchedPosts[0] as! UserVotedPost)
         } else if (upvoted == true) {
             upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
@@ -115,13 +136,21 @@ class QuoteCell: UITableViewCell {
             //TODO: api call for downvote 2 points (to be implemented on API end ASAP)
             vote("down", idNumber: id)
             vote("down", idNumber: id)
+            (fetchedPosts[0] as! UserVotedPost).downvote()
         } else if (downvoted != true){
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
             downvoted = true
             voteCount = voteCount - 1
             voteCountLabel.text = "\(voteCount)"
-            //TODO: api call for downvote
             vote("down", idNumber: id)
+            let newPostData = UserVotedPost(id: id, vote: false, insertIntoManagedObjectContext: moc)
+            fetchedPosts = [newPostData]
+        }
+        
+        do {
+            try moc.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
         }
         
     }
@@ -135,6 +164,41 @@ class QuoteCell: UITableViewCell {
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
                 }
+        }
+    }
+    
+    func getCoreDataForQuote (id: Int) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let moc = appDelegate.managedObjectContext
+        
+        let postFetch = NSFetchRequest(entityName: "Post")
+        let predicate = NSPredicate(format: "id == %@", (id as NSNumber).stringValue)
+        postFetch.predicate = predicate
+        
+        do {
+            fetchedPosts = try moc.executeFetchRequest(postFetch) as! [UserVotedPost]
+            
+        }
+        catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
+        if (fetchedPosts.count > 0 && (fetchedPosts[0] as! UserVotedPost).vote == false) {
+            downvoted = true
+            downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
+            postExistsInCoreData = true
+        }
+        else if (fetchedPosts.count > 0 && (fetchedPosts[0] as! UserVotedPost).vote == true) {
+            upvoted = true
+            upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
+            postExistsInCoreData = true
+        }
+        else {
+            upvoted = false
+            downvoted = false
+            upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
+            downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
         }
     }
 
