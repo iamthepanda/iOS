@@ -186,11 +186,15 @@ class QuoteCell: UITableViewCell {
         
         if (fetchedPosts.count > 0 && (fetchedPosts[0] as! UserVotedPost).vote == false) {
             downvoted = true
+            upvoted = false
+            upVoteButton.setImage(UIImage(named: "up"), forState: UIControlState.Normal)
             downVoteButton.setImage(UIImage(named: "down-yellow"), forState: UIControlState.Normal)
             postExistsInCoreData = true
         }
         else if (fetchedPosts.count > 0 && (fetchedPosts[0] as! UserVotedPost).vote == true) {
             upvoted = true
+            downvoted = false
+            downVoteButton.setImage(UIImage(named: "down"), forState: UIControlState.Normal)
             upVoteButton.setImage(UIImage(named: "up-red"), forState: UIControlState.Normal)
             postExistsInCoreData = true
         }

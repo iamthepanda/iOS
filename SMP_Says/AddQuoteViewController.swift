@@ -23,7 +23,7 @@ class AddQuoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.schoolField.becomeFirstResponder()
+        self.quoteField.becomeFirstResponder()
     }
     
     

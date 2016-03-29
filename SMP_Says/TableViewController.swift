@@ -27,6 +27,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     var searchBar : UISearchBar!
     var searchResults : [NSDictionary]!
     
+    var tries: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,16 +93,27 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                 print(response.data)     // server data
                 print(response.result)   // result of response serialization
                 
-                let JSON =  response.result.value as! [NSDictionary] //TODO: protect against unexpected nil- 'if let, else {protection statement}
-                
-                
-                for quote in JSON {
+                switch response.result {
+                case .Success( _):
                     
-                    self.quotes.append(quote)
+                    let JSON =  response.result.value as! [NSDictionary] //TODO: protect against unexpected nil- 'if let, else {protection statement}
+                    
+                    
+                    for quote in JSON {
+                        
+                        self.quotes.append(quote)
+                    }
+                    
+                    self.searchResults = self.quotes
+                    self.quotesTableView.reloadData()
+                    
+                case .Failure( _):
+                    if (self.tries < 5) {
+                        self.fillTableView(url)
+                    }
+                    self.tries += 1
                 }
                 
-                self.searchResults = self.quotes
-                self.quotesTableView.reloadData()
         }
 
         

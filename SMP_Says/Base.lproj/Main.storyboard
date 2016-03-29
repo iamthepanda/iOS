@@ -187,39 +187,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quote" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pv-36-4pw">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quote" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pv-36-4pw">
                                 <rect key="frame" x="20" y="75" width="280" height="30"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" selected="YES"/>
                                 </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DZ-gS-w6c">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DZ-gS-w6c">
                                 <rect key="frame" x="20" y="113" width="280" height="30"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" selected="YES"/>
                                 </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Professor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sad-Sa-CVI">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Professor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sad-Sa-CVI">
                                 <rect key="frame" x="20" y="151" width="280" height="30"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" selected="YES"/>
                                 </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-Cj-1ft">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-Cj-1ft">
                                 <rect key="frame" x="20" y="189" width="280" height="30"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" link="YES" selected="YES"/>
                                 </accessibility>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDY-sb-xtI">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDY-sb-xtI">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Stuff My Professor Says" id="WSt-NJ-Yy5"/>
@@ -238,6 +242,20 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="top" secondItem="8DZ-gS-w6c" secondAttribute="bottom" constant="8" id="06d-R2-KUh"/>
+                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="top" secondItem="Sad-Sa-CVI" secondAttribute="bottom" constant="8" id="3fM-9N-Obi"/>
+                            <constraint firstAttribute="trailing" secondItem="5pv-36-4pw" secondAttribute="trailing" constant="20" id="LAD-SS-ivi"/>
+                            <constraint firstItem="5pv-36-4pw" firstAttribute="top" secondItem="JDY-sb-xtI" secondAttribute="bottom" constant="11" id="R4D-st-XuJ"/>
+                            <constraint firstAttribute="trailing" secondItem="8DZ-gS-w6c" secondAttribute="trailing" constant="20" id="W5f-4q-6S4"/>
+                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="dMp-zd-ufc"/>
+                            <constraint firstAttribute="trailing" secondItem="rP6-Cj-1ft" secondAttribute="trailing" constant="20" id="fqX-Ky-uV6"/>
+                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="top" secondItem="5pv-36-4pw" secondAttribute="bottom" constant="8" id="iR0-Dv-pD6"/>
+                            <constraint firstItem="5pv-36-4pw" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="lec-uI-2ju"/>
+                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="pmN-gd-3VQ"/>
+                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="wR7-gv-uT5"/>
+                            <constraint firstAttribute="trailing" secondItem="Sad-Sa-CVI" secondAttribute="trailing" constant="20" id="zYl-oG-b7D"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S2J-kw-5td"/>
                     <connections>
