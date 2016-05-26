@@ -31,6 +31,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     var quotesPerPage: Int = 15 //how many quotes will be loaded at one time
     var pages: Int = 0 //incremented as we scroll for use in API call
     var quotePage: Int = 0 //0 for new, 1 for popular
+    var didSwitchOrganization: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +61,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
         let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15"
-
-        self.quotes = []
+        
+        didSwitchOrganization = true
         
         fillTableView(url)
         
@@ -71,7 +72,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     func quoteOrganizationChanged(sender: UISegmentedControl) {
         
         var url: String = ""
-        self.quotes = []
+        didSwitchOrganization = true
         pages = 0
         
         if quoteOrganizationSwitch.selectedSegmentIndex == 0 {
@@ -109,6 +110,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     let JSON =  response.result.value as! [NSDictionary] //TODO: protect against unexpected nil- 'if let, else {protection statement}
                     
+                    if self.didSwitchOrganization {
+                        self.quotes = []
+                    }
                     
                     for quote in JSON {
                         
@@ -146,6 +150,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             else {
                 url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15&pages=" + String(self.pages)
             }
+            self.didSwitchOrganization = false
             
             fillTableView(url)
             
