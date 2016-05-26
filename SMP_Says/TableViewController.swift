@@ -27,10 +27,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     var searchBar : UISearchBar!
     var searchResults : [NSDictionary]!
     
-    var tries: Int = 0
-    var quotesPerPage: Int = 15
-    var pages: Int = 0
-    //var indexForRefresh: NSIndexPath
+    var tries: Int = 0 //API call set to try 5 times and then quit. This keeps track of how many times it has been tried
+    var quotesPerPage: Int = 15 //how many quotes will be loaded at one time
+    var pages: Int = 0 //incremented as we scroll for use in API call
     var quotePage: Int = 0 //0 for new, 1 for popular
     
     override func viewDidLoad() {
@@ -84,14 +83,18 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15"
         }
         
+        fillTableView(url)
+        
         quotesTableView.selectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0),
                                              animated: false,
                                              scrollPosition: UITableViewScrollPosition.Bottom)
-        fillTableView(url)
+        
         
     }
     
     func fillTableView (url : String) {
+        
+        self.tries = 0
         
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
