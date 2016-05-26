@@ -27,7 +27,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     var searchBar : UISearchBar!
     var searchResults : [NSDictionary]!
     
-    var tries: Int = 0
+    var tries: Int = 0 //API call set to try 5 times and then quit. This keeps track of how many times it has been tried
+    var quotesPerPage: Int = 15 //how many quotes will be loaded at one time
+    var pages: Int = 0 //incremented as we scroll for use in API call
+    var quotePage: Int = 0 //0 for new, 1 for popular
+    var didSwitchOrganization: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +60,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
-        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
-
+        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15"
+        
+        didSwitchOrganization = true
+        
         fillTableView(url)
         
     }
@@ -65,28 +71,34 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func quoteOrganizationChanged(sender: UISegmentedControl) {
         
-        var url :String = ""
+        var url: String = ""
+        didSwitchOrganization = true
+        pages = 0
         
         if quoteOrganizationSwitch.selectedSegmentIndex == 0 {
-            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes"
+            self.quotePage = 0
+            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15"
         }
         else {
-            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc"
+            self.quotePage = 1
+            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15"
         }
         
         fillTableView(url)
+        
         quotesTableView.selectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0),
                                              animated: false,
                                              scrollPosition: UITableViewScrollPosition.Bottom)
+        
         
     }
     
     func fillTableView (url : String) {
         
+        self.tries = 0
+        
         Alamofire.request(.GET, url, parameters: nil)
             .responseJSON { response in
-                
-                self.quotes = []
                 
                 print(response.request)  // original URL request
                 print(response.response) // URL response
@@ -98,6 +110,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
                     
                     let JSON =  response.result.value as! [NSDictionary] //TODO: protect against unexpected nil- 'if let, else {protection statement}
                     
+                    if self.didSwitchOrganization {
+                        self.quotes = []
+                    }
                     
                     for quote in JSON {
                         
@@ -118,6 +133,30 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         
     }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let index = (self.pages + 1) * self.quotesPerPage - 3
+        
+        let indexForRefresh = NSIndexPath(forRow: index, inSection: 0)
+        
+        if (indexPath == indexForRefresh) {
+            var url: String
+            self.pages += 1
+            
+            if self.quotePage == 0 {
+                url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15&pages=" + String(self.pages)
+            }
+            else {
+                url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15&pages=" + String(self.pages)
+            }
+            self.didSwitchOrganization = false
+            
+            fillTableView(url)
+            
+        }
+    }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults?.count ?? 0
