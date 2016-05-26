@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VzU-bI-65T">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VzU-bI-65T">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -29,15 +29,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="95.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="754" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T70-YY-iOB">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="754" misplaced="YES" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T70-YY-iOB">
                                                     <rect key="frame" x="8" y="8" width="44" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalCompressionResistancePriority="752" text="Quotation" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRS-QD-4Rf">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalCompressionResistancePriority="752" misplaced="YES" text="Quotation" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRS-QD-4Rf">
                                                     <rect key="frame" x="23" y="31" width="248" height="20"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -69,29 +69,27 @@
                                                         <action selector="downVoteButtonClicked:" destination="fe9-ug-xki" eventType="touchUpInside" id="xo4-jT-7Re"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="School Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLH-tI-zMb">
-                                                    <rect key="frame" x="123" y="72" width="75" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="School Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLH-tI-zMb">
+                                                    <rect key="frame" x="60" y="7" width="75" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Fa4-bR-WRR" firstAttribute="centerX" secondItem="gL8-jR-NhR" secondAttribute="centerX" id="2uT-hx-oJh"/>
+                                                <constraint firstItem="YRS-QD-4Rf" firstAttribute="top" secondItem="T70-YY-iOB" secondAttribute="bottom" constant="15" id="43X-dR-jbn"/>
                                                 <constraint firstItem="gL8-jR-NhR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T70-YY-iOB" secondAttribute="trailing" constant="8" id="6sT-RD-5OZ"/>
                                                 <constraint firstItem="YRS-QD-4Rf" firstAttribute="leading" secondItem="CO0-yS-iT1" secondAttribute="leadingMargin" constant="15" id="74D-Tf-gVa"/>
                                                 <constraint firstAttribute="trailing" secondItem="gL8-jR-NhR" secondAttribute="trailing" constant="8" id="8pv-Zl-z2E"/>
-                                                <constraint firstItem="vLH-tI-zMb" firstAttribute="centerX" secondItem="CO0-yS-iT1" secondAttribute="centerX" id="CMq-j7-GO0"/>
-                                                <constraint firstItem="YRS-QD-4Rf" firstAttribute="top" secondItem="T70-YY-iOB" secondAttribute="bottom" constant="8" id="Kln-Wo-9f0"/>
+                                                <constraint firstItem="vLH-tI-zMb" firstAttribute="leading" secondItem="T70-YY-iOB" secondAttribute="trailing" constant="8" id="AcW-9n-Apf"/>
+                                                <constraint firstItem="vLH-tI-zMb" firstAttribute="height" secondItem="T70-YY-iOB" secondAttribute="height" id="BDL-3f-ged"/>
                                                 <constraint firstItem="gL8-jR-NhR" firstAttribute="top" secondItem="CO0-yS-iT1" secondAttribute="top" constant="8" id="Sqp-fc-oXs"/>
-                                                <constraint firstAttribute="bottom" secondItem="vLH-tI-zMb" secondAttribute="bottom" constant="8" id="UiU-kG-qkL"/>
-                                                <constraint firstItem="vLH-tI-zMb" firstAttribute="top" secondItem="YRS-QD-4Rf" secondAttribute="bottom" constant="21" id="VWK-jk-1Mj"/>
                                                 <constraint firstItem="cpz-Eo-Kmc" firstAttribute="centerX" secondItem="gL8-jR-NhR" secondAttribute="centerX" id="Vd0-jM-rVd"/>
-                                                <constraint firstItem="vLH-tI-zMb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CO0-yS-iT1" secondAttribute="leading" constant="8" id="dMw-IM-qMO"/>
                                                 <constraint firstAttribute="trailing" secondItem="cpz-Eo-Kmc" secondAttribute="trailing" constant="8" id="eYy-B3-RpF"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Fa4-bR-WRR" secondAttribute="trailing" constant="7" id="kRi-oY-VEO"/>
                                                 <constraint firstItem="Fa4-bR-WRR" firstAttribute="leading" secondItem="YRS-QD-4Rf" secondAttribute="trailing" constant="15" id="kWt-Ek-G2K"/>
-                                                <constraint firstItem="cpz-Eo-Kmc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vLH-tI-zMb" secondAttribute="trailing" constant="8" id="rZC-3l-mqK"/>
+                                                <constraint firstItem="YRS-QD-4Rf" firstAttribute="top" secondItem="vLH-tI-zMb" secondAttribute="bottom" constant="15" id="ltg-yc-e16"/>
                                                 <constraint firstItem="Fa4-bR-WRR" firstAttribute="top" secondItem="gL8-jR-NhR" secondAttribute="bottom" constant="6" id="rk6-Sf-wcy"/>
                                                 <constraint firstItem="T70-YY-iOB" firstAttribute="top" secondItem="CO0-yS-iT1" secondAttribute="top" constant="8" id="v0z-gp-U36"/>
                                                 <constraint firstItem="T70-YY-iOB" firstAttribute="leading" secondItem="CO0-yS-iT1" secondAttribute="leading" constant="8" id="xpC-dG-sfs"/>
