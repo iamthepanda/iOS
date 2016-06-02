@@ -13,8 +13,9 @@ import SwiftyJSON
 class AddQuoteViewController: UIViewController {
 
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var schoolField: UITextField!
-    @IBOutlet weak var quoteField: UITextField!
+    @IBOutlet weak var quoteView: UITextView!
     @IBOutlet weak var subjectField: UITextField!
     @IBOutlet weak var professorField: UITextField!
     
@@ -23,14 +24,26 @@ class AddQuoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.quoteField.becomeFirstResponder()
+        self.quoteView.becomeFirstResponder()
+        let logo = UIImage(named: "SMPSLogo.png")
+        let imageView = UIImageView(image:logo)
+        imageView.contentMode = .ScaleAspectFit
+        navigationItem.titleView = imageView
+        
+        let borderColor : UIColor = UIColor( red: 204/255, green: 204/255, blue:204/255, alpha: 1.0 )
+        
+        quoteView.layer.borderColor = borderColor.CGColor;
+        quoteView.layer.borderWidth = 0.5;
+        quoteView.layer.cornerRadius = 6.0;
+        
+        submitButton.layer.cornerRadius = 6.0;
     }
     
     
     @IBAction func onSubmitButtonClick(sender: AnyObject) {
         
         let school: String = schoolField.text!
-        let quote: String = quoteField.text!
+        let quote: String = quoteView.text!
         let subject: String = subjectField.text!
         let professor: String = professorField.text!
         

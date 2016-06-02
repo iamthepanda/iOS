@@ -185,81 +185,113 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quote" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5pv-36-4pw">
-                                <rect key="frame" x="20" y="75" width="280" height="30"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DZ-gS-w6c">
-                                <rect key="frame" x="20" y="113" width="280" height="30"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Professor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sad-Sa-CVI">
-                                <rect key="frame" x="20" y="151" width="280" height="30"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-Cj-1ft">
-                                <rect key="frame" x="20" y="189" width="280" height="30"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDY-sb-xtI">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Stuff My Professor Says" id="WSt-NJ-Yy5"/>
-                                </items>
-                            </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iby-q3-7Xb">
-                                <rect key="frame" x="113" y="227" width="95" height="30"/>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.82352941180000006" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Submit Quote">
-                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="onSubmitButtonClick:" destination="bEL-ul-iYD" eventType="touchUpInside" id="UtW-3b-JFb"/>
-                                    <segue destination="BYZ-38-t0r" kind="push" id="sv0-yP-j6e"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-4B-p2m">
+                                <rect key="frame" x="0.0" y="-44" width="320" height="612"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ulr-9R-Gvh">
+                                        <rect key="frame" x="0.0" y="-35" width="320" height="504"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Type your quote:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KzK-DK-hJd">
+                                                <rect key="frame" x="20" y="33" width="214" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eky-Fz-nqY" userLabel="Quote View">
+                                                <rect key="frame" x="20" y="93" width="280" height="71"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8DZ-gS-w6c">
+                                                <rect key="frame" x="20" y="172" width="280" height="30"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Professor" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sad-Sa-CVI">
+                                                <rect key="frame" x="20" y="210" width="280" height="30"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rP6-Cj-1ft">
+                                                <rect key="frame" x="20" y="248" width="280" height="30"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" link="YES" selected="YES"/>
+                                                </accessibility>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iby-q3-7Xb">
+                                                <rect key="frame" x="113" y="286" width="95" height="30"/>
+                                                <color key="backgroundColor" red="0.10980392156862745" green="0.58039215686274503" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                                <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
+                                                <state key="normal" title="Submit Quote">
+                                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onSubmitButtonClick:" destination="bEL-ul-iYD" eventType="touchUpInside" id="UtW-3b-JFb"/>
+                                                    <segue destination="BYZ-38-t0r" kind="push" id="sv0-yP-j6e"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="top" secondItem="Sad-Sa-CVI" secondAttribute="bottom" constant="8" id="1r3-Rl-oYJ"/>
+                                            <constraint firstItem="iby-q3-7Xb" firstAttribute="centerX" secondItem="ulr-9R-Gvh" secondAttribute="centerX" id="29h-MY-fRl"/>
+                                            <constraint firstItem="eky-Fz-nqY" firstAttribute="leading" secondItem="ulr-9R-Gvh" secondAttribute="leading" constant="20" id="5Mh-yd-HxJ"/>
+                                            <constraint firstItem="KzK-DK-hJd" firstAttribute="leading" secondItem="ulr-9R-Gvh" secondAttribute="leading" constant="20" id="5i0-mr-sXY"/>
+                                            <constraint firstAttribute="trailing" secondItem="eky-Fz-nqY" secondAttribute="trailing" constant="20" id="A1u-Qs-RVt"/>
+                                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="leading" secondItem="ulr-9R-Gvh" secondAttribute="leading" constant="20" id="Apw-XJ-MJD"/>
+                                            <constraint firstAttribute="trailing" secondItem="rP6-Cj-1ft" secondAttribute="trailing" constant="20" id="BFn-66-tsS"/>
+                                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="centerX" secondItem="ulr-9R-Gvh" secondAttribute="centerX" id="EQQ-ag-S2U"/>
+                                            <constraint firstItem="KzK-DK-hJd" firstAttribute="top" secondItem="ulr-9R-Gvh" secondAttribute="top" constant="10" id="FMP-u3-wrm"/>
+                                            <constraint firstItem="iby-q3-7Xb" firstAttribute="top" secondItem="rP6-Cj-1ft" secondAttribute="bottom" constant="8" id="Fx9-Zi-UAO"/>
+                                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="top" secondItem="eky-Fz-nqY" secondAttribute="bottom" constant="8" id="OC3-Xc-kDf"/>
+                                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="top" secondItem="8DZ-gS-w6c" secondAttribute="bottom" constant="8" id="OUr-4d-Q43"/>
+                                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="centerX" secondItem="ulr-9R-Gvh" secondAttribute="centerX" id="P3u-Lb-wHR"/>
+                                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="centerX" secondItem="ulr-9R-Gvh" secondAttribute="centerX" id="V9W-YZ-eMS"/>
+                                            <constraint firstAttribute="trailing" secondItem="8DZ-gS-w6c" secondAttribute="trailing" constant="20" id="agD-S4-yw9"/>
+                                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="leading" secondItem="ulr-9R-Gvh" secondAttribute="leading" constant="20" id="bOO-bq-1ii"/>
+                                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="leading" secondItem="ulr-9R-Gvh" secondAttribute="leading" constant="20" id="cXk-BK-NRL"/>
+                                            <constraint firstItem="eky-Fz-nqY" firstAttribute="top" secondItem="KzK-DK-hJd" secondAttribute="bottom" constant="8" id="hYg-1N-zRD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Sad-Sa-CVI" secondAttribute="trailing" constant="20" id="vdW-jV-oyI"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="ulr-9R-Gvh" firstAttribute="leading" secondItem="Mao-4B-p2m" secondAttribute="leading" id="Dbg-kb-ph8"/>
+                                    <constraint firstItem="ulr-9R-Gvh" firstAttribute="top" secondItem="Mao-4B-p2m" secondAttribute="top" id="IxV-AW-WcE"/>
+                                    <constraint firstAttribute="trailing" secondItem="ulr-9R-Gvh" secondAttribute="trailing" id="TZI-T3-Kpc"/>
+                                    <constraint firstAttribute="bottom" secondItem="ulr-9R-Gvh" secondAttribute="bottom" id="mwm-6g-moc"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="top" secondItem="8DZ-gS-w6c" secondAttribute="bottom" constant="8" id="06d-R2-KUh"/>
-                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="top" secondItem="Sad-Sa-CVI" secondAttribute="bottom" constant="8" id="3fM-9N-Obi"/>
-                            <constraint firstAttribute="trailing" secondItem="5pv-36-4pw" secondAttribute="trailing" constant="20" id="LAD-SS-ivi"/>
-                            <constraint firstItem="5pv-36-4pw" firstAttribute="top" secondItem="JDY-sb-xtI" secondAttribute="bottom" constant="11" id="R4D-st-XuJ"/>
-                            <constraint firstAttribute="trailing" secondItem="8DZ-gS-w6c" secondAttribute="trailing" constant="20" id="W5f-4q-6S4"/>
-                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="dMp-zd-ufc"/>
-                            <constraint firstAttribute="trailing" secondItem="rP6-Cj-1ft" secondAttribute="trailing" constant="20" id="fqX-Ky-uV6"/>
-                            <constraint firstItem="8DZ-gS-w6c" firstAttribute="top" secondItem="5pv-36-4pw" secondAttribute="bottom" constant="8" id="iR0-Dv-pD6"/>
-                            <constraint firstItem="5pv-36-4pw" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="lec-uI-2ju"/>
-                            <constraint firstItem="rP6-Cj-1ft" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="pmN-gd-3VQ"/>
-                            <constraint firstItem="Sad-Sa-CVI" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" constant="20" id="wR7-gv-uT5"/>
-                            <constraint firstAttribute="trailing" secondItem="Sad-Sa-CVI" secondAttribute="trailing" constant="20" id="zYl-oG-b7D"/>
+                            <constraint firstItem="Mao-4B-p2m" firstAttribute="top" secondItem="r8s-nY-1sj" secondAttribute="bottom" constant="-64" id="EPP-Th-LRg"/>
+                            <constraint firstItem="ulr-9R-Gvh" firstAttribute="height" secondItem="0rN-We-8pN" secondAttribute="height" id="HGc-aq-G9Y"/>
+                            <constraint firstItem="Mao-4B-p2m" firstAttribute="leading" secondItem="0rN-We-8pN" secondAttribute="leading" id="SEv-if-gx3"/>
+                            <constraint firstItem="WLS-Be-SZv" firstAttribute="top" secondItem="Mao-4B-p2m" secondAttribute="bottom" id="YkW-r6-hMO"/>
+                            <constraint firstAttribute="trailing" secondItem="Mao-4B-p2m" secondAttribute="trailing" id="aCD-DC-Ib0"/>
+                            <constraint firstItem="ulr-9R-Gvh" firstAttribute="width" secondItem="0rN-We-8pN" secondAttribute="width" id="eQP-aa-fLL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="S2J-kw-5td"/>
+                    <navigationItem key="navigationItem" id="2tC-vI-Bcq"/>
                     <connections>
                         <outlet property="professorField" destination="Sad-Sa-CVI" id="DyW-6M-H2W"/>
-                        <outlet property="quoteField" destination="5pv-36-4pw" id="8eM-s4-aJc"/>
+                        <outlet property="quoteView" destination="eky-Fz-nqY" id="Dci-mn-TKg"/>
                         <outlet property="schoolField" destination="8DZ-gS-w6c" id="9N4-Zk-bhf"/>
+                        <outlet property="scrollView" destination="Mao-4B-p2m" id="6K4-ZR-g2h"/>
                         <outlet property="subjectField" destination="rP6-Cj-1ft" id="C40-SJ-RK7"/>
                         <outlet property="submitButton" destination="iby-q3-7Xb" id="gjh-Il-4hv"/>
                     </connections>

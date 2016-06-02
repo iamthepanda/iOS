@@ -53,7 +53,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchBar.placeholder = "Enter search term"
         
         if (searchBarDisplay == false) {
-            navigationItem.title = "Stuff My Professor Says"
+            let logo = UIImage(named: "SMPSLogo.png")
+            let imageView = UIImageView(image:logo)
+            imageView.contentMode = .ScaleAspectFit
+            navigationItem.titleView = imageView
             
         }
         
@@ -192,7 +195,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchBar.resignFirstResponder()
         navigationItem.titleView = nil
         
-        navigationItem.title = "Stuff My Professor Says"
+        let logo = UIImage(named: "SMPSLogo.png")
+        let imageView = UIImageView(image:logo)
+        imageView.contentMode = .ScaleAspectFit
+        navigationItem.titleView = imageView
     }
     
     @IBAction func searchBarButtonClicked(sender: AnyObject) {
