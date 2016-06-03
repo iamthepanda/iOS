@@ -36,7 +36,8 @@ class QuoteCell: UITableViewCell {
     var quote : Quote! {
         didSet {
             quotationLabel.text = quote.quotation
-            schoolLabel.text = quote.school
+            let schoolText = "Professor Blab, " + quote.school! //temp change until adding prof label
+            schoolLabel.text = schoolText
            // professorLabel.text = quote.professor
             subjectLabel.text = quote.subject
             rightVotes = quote.rightvotes!

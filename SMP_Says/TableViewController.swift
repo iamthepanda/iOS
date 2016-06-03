@@ -179,6 +179,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
+
+    
     //func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     //    if (searchBarDisplay == false) {
     //     searchBar.resignFirstResponder()

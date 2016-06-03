@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class AddQuoteViewController: UIViewController {
+class AddQuoteViewController: UIViewController, UITextViewDelegate{
 
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -36,6 +36,8 @@ class AddQuoteViewController: UIViewController {
         navigationItem.titleView = titleView
         
         
+        
+        quoteView.delegate = self
         
         
     
@@ -81,6 +83,21 @@ class AddQuoteViewController: UIViewController {
         }
 
     }
+    
+    
+    @IBAction func checkMaxLength(textField: UITextField!) {
+        if (textField.text!.characters.count > 25) {
+            textField.deleteBackward()
+        }
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        let maxtext: Int = 150
+
+        return textView.text.characters.count + (text.characters.count - range.length) <= maxtext
+        
+    }
+    
     
     
 }
