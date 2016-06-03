@@ -20,11 +20,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
-    var searchBarDisplay : Bool! = false
+    //var searchBarDisplay : Bool! = false
     
     var quotes : [NSDictionary]! = []
     
-    var searchBar : UISearchBar!
+    //var searchBar : UISearchBar!
     var searchResults : [NSDictionary]!
     
     var tries: Int = 0 //API call set to try 5 times and then quit. This keeps track of how many times it has been tried
@@ -47,15 +47,22 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         quotesTableView.estimatedRowHeight = 120
         
         // create the search bar programatically
-        self.searchBar = UISearchBar()
-        searchBar.delegate = self
-        self.searchBar.sizeToFit()
-        searchBar.placeholder = "Enter search term"
+        //self.searchBar = UISearchBar()
+        //searchBar.delegate = self
+        //self.searchBar.sizeToFit()
+        //searchBar.placeholder = "Enter search term"
         
-        if (searchBarDisplay == false) {
-            navigationItem.title = "Stuff My Professor Says"
-            
-        }
+        //if (searchBarDisplay == false) {
+        let logo = UIImage(named: "SMPSLogo.png")
+        let imageFrame = CGRect(x: -120, y: 0, width: 240, height: 43)
+        let titleImageView = UIImageView(frame: imageFrame)
+        let titleView = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 43))
+        titleView.addSubview(titleImageView)
+        titleView.contentMode = .ScaleAspectFit
+        titleImageView.image = logo
+        navigationItem.titleView = titleView
+        
+        //}
         
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
@@ -172,37 +179,48 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         return cell
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        if (searchBarDisplay == false) {
-         searchBar.resignFirstResponder()
-        }
+    //func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    //    if (searchBarDisplay == false) {
+    //     searchBar.resignFirstResponder()
+    //    }
 //        else {
 //            searchBarDisplay = false
 //            navigationItem.title = "Stuff My Professor Says"
 //        }
-    }
+    //}
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        searchBar.showsCancelButton = true
-    }
+    //func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    //    searchBar.showsCancelButton = true
+    //}
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.text = ""
-        searchBar.resignFirstResponder()
-        navigationItem.titleView = nil
-        
-        navigationItem.title = "Stuff My Professor Says"
-    }
-    
-    @IBAction func searchBarButtonClicked(sender: AnyObject) {
-        //add the search bar to the navigation bar and customize the nav bar
-        navigationItem.titleView = searchBar
-    }
+//    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+//        searchBar.showsCancelButton = false
+//        searchBar.text = ""
+//        searchBar.resignFirstResponder()
+//        navigationItem.titleView = nil
+//        
+//        let logo = UIImage(named: "SMPSLogo.png")
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 240, height: 43))
+//        imageView.contentMode = .ScaleAspectFit
+//        imageView.image = logo
+//        navigationItem.titleView = imageView
+//    }
+//    
+//    @IBAction func searchBarButtonClicked(sender: AnyObject) {
+//        //add the search bar to the navigation bar and customize the nav bar
+//        navigationItem.titleView = searchBar
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem // This will show in the next view controller being pushed
     }
     
     
