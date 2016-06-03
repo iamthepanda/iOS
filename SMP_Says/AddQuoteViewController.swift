@@ -25,10 +25,20 @@ class AddQuoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.quoteView.becomeFirstResponder()
+        
         let logo = UIImage(named: "SMPSLogo.png")
-        let imageView = UIImageView(image:logo)
-        imageView.contentMode = .ScaleAspectFit
-        navigationItem.titleView = imageView
+        let imageFrame = CGRect(x: -120, y: 0, width: 240, height: 43)
+        let titleImageView = UIImageView(frame: imageFrame)
+        let titleView = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 43))
+        titleView.addSubview(titleImageView)
+        titleView.contentMode = .ScaleAspectFit
+        titleImageView.image = logo
+        navigationItem.titleView = titleView
+        
+        
+        
+        
+    
         
         let borderColor : UIColor = UIColor( red: 204/255, green: 204/255, blue:204/255, alpha: 1.0 )
         
