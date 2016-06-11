@@ -10,14 +10,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class AddQuoteViewController: UIViewController, UITextViewDelegate{
+class AddQuoteViewController: UIViewController, UITextViewDelegate {
 
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var schoolField: UITextField!
+    @IBOutlet weak var schoolField: TextFieldAutoComplete!
     @IBOutlet weak var quoteView: UITextView!
-    @IBOutlet weak var subjectField: UITextField!
-    @IBOutlet weak var professorField: UITextField!
+    @IBOutlet weak var subjectField: TextFieldAutoComplete!
+    @IBOutlet weak var professorField: TextFieldAutoComplete!
+    
     
     
     @IBOutlet weak var submitButton: UIButton!
@@ -25,6 +26,9 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.quoteView.becomeFirstResponder()
+        
+        assignDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/schools", field: 1, attempts: 0)
+        assignDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/subjects", field: 3, attempts: 0)
         
         let logo = UIImage(named: "SMPSLogo.png")
         let imageFrame = CGRect(x: -120, y: 0, width: 240, height: 43)
@@ -36,10 +40,10 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate{
         navigationItem.titleView = titleView
         
         
+
         
         quoteView.delegate = self
-        
-        
+
     
         
         let borderColor : UIColor = UIColor( red: 204/255, green: 204/255, blue:204/255, alpha: 1.0 )
@@ -97,6 +101,58 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate{
         return textView.text.characters.count + (text.characters.count - range.length) <= maxtext
         
     }
+    
+    func assignDataSource (url : String, field: Int, attempts: Int){
+        
+        var tries = 0
+        var list: Array<String> = []
+        
+        Alamofire.request(.GET, url, parameters: nil)
+            .responseJSON { response in
+                
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                switch response.result {
+                case .Success(let JSON):
+                    
+                    //let JSON =  response.result.value as! [NSDictionary] //TODO: protect against unexpected nil- 'if let, else {protection statement}
+                    let response = JSON as! [NSDictionary]
+                    
+                    //print(JSON)
+                    
+                    for object in response {
+                        list.append(object.objectForKey("name") as! String)
+                        }
+                    print(list[0])
+                    if field == 1 {
+                        self.schoolField.dataList = list
+                    }
+                    else if field == 2 {
+                        self.professorField.dataList = list
+                    }
+                    else {
+                        self.subjectField.dataList = list
+                    }
+                
+                    
+                case .Failure( _):
+                    
+                    tries += 1
+                    
+                    if (tries < 5) {
+                        self.assignDataSource(url, field: field, attempts: tries)
+                    }
+                    
+                }
+                
+        }
+        
+    }
+    
+
     
     
     

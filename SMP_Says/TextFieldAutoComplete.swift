@@ -62,6 +62,7 @@ class TextFieldAutoComplete: UITextField {
     }
     
     func displayAutoComplete (string: String, cursorPositionTextRange: UITextRange) {
+        removeTarget(nil, action: nil, forControlEvents: allControlEvents())
         
         text = string
         selectedTextRange = cursorPositionTextRange
@@ -73,6 +74,8 @@ class TextFieldAutoComplete: UITextField {
         attributedText = getColoredText(textInRange(inputTextRange!)!, autoCompleteText: textInRange(autoCompleteTextRange!)!)
         
         selectedTextRange = cursorPositionTextRange
+        
+        addTarget(self, action: #selector(TextFieldAutoComplete.autoComplete), forControlEvents: UIControlEvents.EditingChanged)
         
     }
     
