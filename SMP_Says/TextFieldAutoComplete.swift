@@ -22,6 +22,7 @@ class TextFieldAutoComplete: UITextField {
         //addTarget(self, action: #selector(TextFieldAutoComplete.setCorrectColors), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
+    
     func assignDataSource (data: Array<String>) {
         dataSource = data
         dataList = dataSource.sort()
@@ -93,7 +94,10 @@ class TextFieldAutoComplete: UITextField {
     }
     
     func textToBlack () {
+        //let range :UITextRange = (textRangeFromPosition(beginningOfDocument, toPosition: endOfDocument))!
+        //attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: range)
         text = attributedText?.string
+        attributedText = nil
     }
     
 }

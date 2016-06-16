@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class AddQuoteViewController: UIViewController, UITextViewDelegate {
+class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
 
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -27,8 +27,9 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         self.quoteView.becomeFirstResponder()
         
-        assignDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/schools", field: 1, attempts: 0)
-        assignDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/subjects", field: 3, attempts: 0)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        assignFieldDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/subjects", field: 3, attempts: 0)
         
         let logo = UIImage(named: "SMPSLogo.png")
         let imageFrame = CGRect(x: -120, y: 0, width: 240, height: 43)
@@ -39,10 +40,16 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
         titleImageView.image = logo
         navigationItem.titleView = titleView
         
+        if let schoolFieldContents = defaults.stringForKey("schoolFieldContents") {
+            schoolField.text = schoolFieldContents
+        }
         
-
-        
+        schoolField.delegate = self
         quoteView.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddQuoteViewController.keyboardWillShowOrHide(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddQuoteViewController.keyboardWillShowOrHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        //schoolField.addTarget(self, action: #selector(AddQuoteViewController.assignSchoolDataSource), forControlEvents: UIControlEvents.EditingChanged)
 
     
         
@@ -62,6 +69,9 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
         let quote: String = quoteView.text!
         let subject: String = subjectField.text!
         let professor: String = professorField.text!
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(schoolField.text, forKey: "schoolFieldContents")
         
         addQuote(school, quoteText: quote, subjectText: subject, professorText: professor)
     
@@ -90,10 +100,12 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
     
     
     @IBAction func checkMaxLength(textField: UITextField!) {
-        if (textField.text!.characters.count > 25) {
+        if (textField.text!.characters.count > 50) {
             textField.deleteBackward()
         }
     }
+    
+    
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         let maxtext: Int = 150
@@ -102,7 +114,7 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    func assignDataSource (url : String, field: Int, attempts: Int){
+    func assignFieldDataSource (url : String, field: Int, attempts: Int){
         
         var tries = 0
         var list: Array<String> = []
@@ -128,14 +140,15 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
                         }
                     print(list[0])
                     if field == 1 {
-                        self.schoolField.dataList = list
+                        self.schoolField.assignDataSource(list)
                     }
                     else if field == 2 {
-                        self.professorField.dataList = list
+                        self.professorField.assignDataSource(list)
                     }
                     else {
-                        self.subjectField.dataList = list
+                        self.subjectField.assignDataSource(list)
                     }
+                    
                 
                     
                 case .Failure( _):
@@ -143,7 +156,7 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
                     tries += 1
                     
                     if (tries < 5) {
-                        self.assignDataSource(url, field: field, attempts: tries)
+                        self.assignFieldDataSource(url, field: field, attempts: tries)
                     }
                     
                 }
@@ -152,8 +165,36 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate {
         
     }
     
-
+    func keyboardWillShowOrHide(notification: NSNotification) {
+        
+        // Pull a bunch of info out of the notification
+        if let scrollView = scrollView, userInfo = notification.userInfo, endValue = userInfo[UIKeyboardFrameEndUserInfoKey], durationValue = userInfo[UIKeyboardAnimationDurationUserInfoKey] {
+            
+            // Transform the keyboard's frame into our view's coordinate system
+            let endRect = view.convertRect(endValue.CGRectValue, fromView: view.window)
+            
+            // Find out how much the keyboard overlaps the scroll view
+            // We can do this because our scroll view's frame is already in our view's coordinate system
+            let keyboardOverlap = scrollView.frame.maxY - endRect.origin.y
+            
+            // Set the scroll view's content inset to avoid the keyboard
+            // Don't forget the scroll indicator too!
+            scrollView.contentInset.bottom = keyboardOverlap
+            scrollView.scrollIndicatorInsets.bottom = keyboardOverlap
+            
+            let duration = durationValue.doubleValue
+            UIView.animateWithDuration(duration, delay: 0, options: .BeginFromCurrentState, animations: {
+                self.view.layoutIfNeeded()
+                }, completion: nil)
+        }
+    }
     
-    
-    
+    @IBAction func assignSchoolDataSource() {
+        let range = schoolField.textRangeFromPosition(schoolField.beginningOfDocument, toPosition: (schoolField.selectedTextRange?.start)!)
+        let string: String = schoolField.textInRange(range!)!
+        if string.characters.count == 1 {
+            let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/schools?name=\(string)"
+            assignFieldDataSource(url, field: 1, attempts: 0)
+        }
+    }
 }

@@ -219,6 +219,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
+                                                    <action selector="assignSchoolDataSource" destination="bEL-ul-iYD" eventType="editingChanged" id="W1V-0g-Wne"/>
                                                     <action selector="checkMaxLength:" destination="bEL-ul-iYD" eventType="editingChanged" id="Yhk-VJ-Ksc"/>
                                                 </connections>
                                             </textField>
