@@ -18,10 +18,21 @@ class TextFieldAutoComplete: UITextField {
         dataList = []
         super.init(coder: aDecoder)!
         addTarget(self, action: #selector(TextFieldAutoComplete.autoComplete), forControlEvents: UIControlEvents.EditingChanged)
-        addTarget(self, action: #selector(TextFieldAutoComplete.textToBlack), forControlEvents: UIControlEvents.EditingDidEnd)
+        //addTarget(self, action: #selector(TextFieldAutoComplete.autoComplete), forControlEvents: UIControlEvents.TouchUpInside)
+        //addTarget(self, action: #selector(TextFieldAutoComplete.textToBlack), forControlEvents: UIControlEvents.EditingDidEndOnExit)
         //addTarget(self, action: #selector(TextFieldAutoComplete.setCorrectColors), forControlEvents: UIControlEvents.TouchUpInside)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TextFieldAutoComplete.textToBlack), name: resignFirstResponder(), object: nil)
     }
     
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        textToBlack()
+    }
+    override func resignFirstResponder() -> Bool {
+        textToBlack()
+        return true
+    }
+    
+    //override func touch
     
     func assignDataSource (data: Array<String>) {
         dataSource = data
@@ -94,10 +105,15 @@ class TextFieldAutoComplete: UITextField {
     }
     
     func textToBlack () {
+        let mutableString: NSMutableAttributedString = NSMutableAttributedString(string: (attributedText?.string)!)
         //let range :UITextRange = (textRangeFromPosition(beginningOfDocument, toPosition: endOfDocument))!
         //attributedText.addAttribute(NSForegroundColorAttributeName, value: UIColor.lightGrayColor(), range: range)
-        text = attributedText?.string
-        attributedText = nil
+        mutableString.setAttributes([:], range: NSRange(0..<mutableString.length))
+        //text = attributedText?.string
+        //attributedText = nil
+        attributedText = mutableString
+        
+        
     }
     
 }

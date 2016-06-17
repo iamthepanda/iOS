@@ -14,10 +14,10 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
 
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var schoolField: TextFieldAutoComplete!
     @IBOutlet weak var quoteView: UITextView!
-    @IBOutlet weak var subjectField: TextFieldAutoComplete!
+    @IBOutlet weak var schoolField: TextFieldAutoComplete!
     @IBOutlet weak var professorField: TextFieldAutoComplete!
+    @IBOutlet weak var subjectField: TextFieldAutoComplete!
     
     
     
@@ -44,8 +44,15 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
             schoolField.text = schoolFieldContents
         }
         
-        schoolField.delegate = self
         quoteView.delegate = self
+        schoolField.delegate = self
+        professorField.delegate = self
+        subjectField.delegate = self
+        
+        quoteView.tag = 0
+        schoolField.tag = 1
+        professorField.tag = 2
+        subjectField.tag = 3
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddQuoteViewController.keyboardWillShowOrHide(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddQuoteViewController.keyboardWillShowOrHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -76,6 +83,7 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
         addQuote(school, quoteText: quote, subjectText: subject, professorText: professor)
     
     }
+    
     
     func addQuote(schoolText: String, quoteText: String, subjectText: String, professorText: String) {
         
@@ -108,9 +116,27 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
     
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        let maxtext: Int = 150
-
-        return textView.text.characters.count + (text.characters.count - range.length) <= maxtext
+        
+        if(text == "\n") {
+            let nextTag=textView.tag+1;
+            // Try to find next responder
+            let nextResponder=textView.superview?.viewWithTag(nextTag) as UIResponder!
+            
+            if (nextResponder != nil){
+                // Found next responder, so set it.
+                nextResponder?.becomeFirstResponder()
+            }
+            else
+            {
+                // Not found, so remove keyboard
+                textView.resignFirstResponder()
+            }
+            return false
+        }
+        else {
+            let maxtext: Int = 150
+            return textView.text.characters.count + (text.characters.count - range.length) <= maxtext
+        }
         
     }
     
@@ -182,12 +208,35 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
             scrollView.contentInset.bottom = keyboardOverlap
             scrollView.scrollIndicatorInsets.bottom = keyboardOverlap
             
+                    
             let duration = durationValue.doubleValue
             UIView.animateWithDuration(duration, delay: 0, options: .BeginFromCurrentState, animations: {
                 self.view.layoutIfNeeded()
                 }, completion: nil)
         }
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        let nextTag=textField.tag+1;
+        // Try to find next responder
+        let nextResponder=textField.superview?.viewWithTag(nextTag) as UIResponder!
+        
+        if (nextResponder != nil){
+            // Found next responder, so set it.
+            nextResponder?.becomeFirstResponder()
+        }
+        else
+        {
+            // Not found, so remove keyboard
+            //self.view.endEditing(true)
+            textField.resignFirstResponder()
+            let bottomOffset: CGPoint = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + 144)
+            self.scrollView.setContentOffset(bottomOffset, animated: true)
+        }
+        return false // We do not want UITextField to insert line-breaks.
+    }
+
     
     @IBAction func assignSchoolDataSource() {
         let range = schoolField.textRangeFromPosition(schoolField.beginningOfDocument, toPosition: (schoolField.selectedTextRange?.start)!)
