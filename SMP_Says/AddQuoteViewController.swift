@@ -81,6 +81,10 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
         defaults.setValue(schoolField.text, forKey: "schoolFieldContents")
         
         addQuote(school, quoteText: quote, subjectText: subject, professorText: professor)
+        
+        let nextView = self.storyboard?.instantiateViewControllerWithIdentifier("TableViewController") as? TableViewController
+        let navigationController = UINavigationController(rootViewController: nextView!)
+        self.presentViewController(navigationController, animated: true, completion: nil)
     
     }
     
