@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		608E886ECE01DD2A432CE4A4 /* Pods_SMP_Says.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */; };
+		C74017A11D1CEEEE00B59DE0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74017A01D1CEEEE00B59DE0 /* SearchViewController.swift */; };
 		C74A85CA1C7FEDCB00B391A9 /* AddQuoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */; };
 		C76EE1141CA8758900CAEB08 /* PostVoteData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C76EE1121CA8758900CAEB08 /* PostVoteData.xcdatamodeld */; };
 		C76EE1161CA8802700CAEB08 /* UserVotedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		8F599BBA40341FA06E3E1164 /* Pods_SMP_Says.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMP_Says.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C74017A01D1CEEEE00B59DE0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddQuoteViewController.swift; sourceTree = "<group>"; };
 		C76EE1131CA8758900CAEB08 /* postVoteData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = postVoteData.xcdatamodel; sourceTree = "<group>"; };
 		C76EE1151CA8802700CAEB08 /* UserVotedPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVotedPost.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			children = (
 				FAFECD8D1C62B78A000D22E9 /* TableViewController.swift */,
 				C74A85C91C7FEDCB00B391A9 /* AddQuoteViewController.swift */,
+				C74017A01D1CEEEE00B59DE0 /* SearchViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				FA54386E1C64CEDD009D314A /* Quote.swift in Sources */,
 				C7997BF81D0BDB8E00162DE2 /* TextFieldAutoComplete.swift in Sources */,
 				FA54386C1C64CC77009D314A /* QuoteCell.swift in Sources */,
+				C74017A11D1CEEEE00B59DE0 /* SearchViewController.swift in Sources */,
 				FAFECD8E1C62B78A000D22E9 /* TableViewController.swift in Sources */,
 				FAFECD8C1C62B78A000D22E9 /* AppDelegate.swift in Sources */,
 				C76EE1161CA8802700CAEB08 /* UserVotedPost.swift in Sources */,

@@ -181,15 +181,19 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 
     
-    //func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-    //    if (searchBarDisplay == false) {
-    //     searchBar.resignFirstResponder()
-    //    }
-//        else {
-//            searchBarDisplay = false
-//            navigationItem.title = "Stuff My Professor Says"
-//        }
-    //}
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+    }
+    
+    
+//    if (searchBarDisplay == false) {
+//    searchBar.resignFirstResponder()
+//    }
+//    else {
+//    searchBarDisplay = false
+//    navigationItem.title = "Stuff My Professor Says"
+//    }
+    
     
     //func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
     //    searchBar.showsCancelButton = true
