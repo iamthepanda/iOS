@@ -30,6 +30,7 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
         let defaults = NSUserDefaults.standardUserDefaults()
         
         assignFieldDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/subjects", field: 3, attempts: 0)
+        assignFieldDataSource("http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/schools", field: 1, attempts: 0)
         
         let logo = UIImage(named: "SMPSLogo.png")
         let imageFrame = CGRect(x: -120, y: 0, width: 240, height: 43)
@@ -241,13 +242,15 @@ class AddQuoteViewController: UIViewController, UITextViewDelegate, UITextFieldD
         return false // We do not want UITextField to insert line-breaks.
     }
 
+//currently the schoolField data source is assigned during viewDidLoad.
+//This method is quicker but the timing doesn't work correctly with a user who types at a normal speed.
     
-    @IBAction func assignSchoolDataSource() {
-        let range = schoolField.textRangeFromPosition(schoolField.beginningOfDocument, toPosition: (schoolField.selectedTextRange?.start)!)
-        let string: String = schoolField.textInRange(range!)!
-        if string.characters.count == 1 {
-            let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/schools?name=\(string)"
-            assignFieldDataSource(url, field: 1, attempts: 0)
-        }
-    }
+//    @IBAction func assignSchoolDataSource() {
+//        let range = schoolField.textRangeFromPosition(schoolField.beginningOfDocument, toPosition: (schoolField.selectedTextRange?.start)!)
+//        let string: String = schoolField.textInRange(range!)!
+//        if string.characters.count == 1 {
+//            let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/schools?name=\(string)"
+//            assignFieldDataSource(url, field: 1, attempts: 0)
+//        }
+//    }
 }

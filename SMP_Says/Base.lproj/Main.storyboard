@@ -150,7 +150,7 @@
                     <navigationItem key="navigationItem" title="Stuff My Professor Says" id="ene-gX-zsq">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="search" id="D91-vF-rL6">
                             <connections>
-                                <segue destination="ddm-FV-Xir" kind="modal" id="5G1-T5-tMl"/>
+                                <action selector="SearchButtonClicked" destination="BYZ-38-t0r" id="2TE-hg-GFd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7yx-KZ-Txm">
@@ -251,7 +251,6 @@
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="s7f-Ch-SJh" id="gSZ-at-Ewz"/>
-                        <outlet property="searchResultField" destination="LHz-jS-BwL" id="awD-Ck-bpS"/>
                         <outlet property="searchResultsTable" destination="LHz-jS-BwL" id="IN3-Cu-wA1"/>
                     </connections>
                 </viewController>
@@ -320,7 +319,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                                 <connections>
-                                                    <action selector="assignSchoolDataSource" destination="bEL-ul-iYD" eventType="editingChanged" id="W1V-0g-Wne"/>
                                                     <action selector="checkMaxLength:" destination="bEL-ul-iYD" eventType="editingChanged" id="Yhk-VJ-Ksc"/>
                                                 </connections>
                                             </textField>

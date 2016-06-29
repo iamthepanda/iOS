@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, modalSearchController {
     
     @IBOutlet weak var quoteOrganizationSwitch: UISegmentedControl!
     
@@ -32,6 +32,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     var pages: Int = 0 //incremented as we scroll for use in API call
     var quotePage: Int = 0 //0 for new, 1 for popular
     var didSwitchOrganization: Bool = false
+    var filteringParameter: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,12 +68,28 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         navigationController?.navigationBar.barTintColor = UIColor(red: 28/255, green: 129/255, blue: 183/255, alpha: 1)
         
-        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15"
+        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15" + filteringParameter
         
         didSwitchOrganization = true
         
         fillTableView(url)
         
+    }
+    
+    //called when search modal is dismissed
+    func passSearchParam(param: String) {
+        
+        filteringParameter = param
+        
+        quoteOrganizationSwitch.selectedSegmentIndex = 0
+        
+        let url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15" + filteringParameter
+        
+        fillTableView(url)
+        
+        quotesTableView.selectRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0),
+                                             animated: false,
+                                             scrollPosition: UITableViewScrollPosition.Bottom)
     }
     
     
@@ -84,11 +101,11 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         if quoteOrganizationSwitch.selectedSegmentIndex == 0 {
             self.quotePage = 0
-            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15"
+            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15" + filteringParameter
         }
         else {
             self.quotePage = 1
-            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15"
+            url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15" + filteringParameter
         }
         
         fillTableView(url)
@@ -152,10 +169,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             self.pages += 1
             
             if self.quotePage == 0 {
-                url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15&pages=" + String(self.pages)
+                url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?amount=15&pages=" + String(self.pages) + filteringParameter
             }
             else {
-                url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15&pages=" + String(self.pages)
+                url = "http://www.smpsays-api.xyz/RUEf2i15kex8nXhmJxCW2ozA5SNIyfLn/search/quotes?popularity=desc&amount=15&pages=" + String(self.pages) + filteringParameter
             }
             self.didSwitchOrganization = false
             
@@ -181,8 +198,10 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
 
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
+    @IBAction func SearchButtonClicked() {
+        let searchModal = SearchViewController()
+        searchModal.delegate = self
+        presentViewController(searchModal, animated: true, completion: nil)
     }
     
     
